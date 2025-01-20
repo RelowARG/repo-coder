@@ -1,0 +1,67 @@
+/* Elimina márgenes, relleno y bordes por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Configuración general del cuerpo */
+body {
+    background-color: lightgray; /* Fondo gris claro */
+    text-align: center; /* Centra el contenido textual */
+}
+
+/* Estilos para el logo */
+#logo {
+    width: 50%; /* Ajusta el tamaño del logo al 50% del ancho del contenedor */
+}
+
+/* Estilos para la barra de navegación */
+nav table {
+    width: 100%; /* Ancho completo */
+    text-align: center; /* Centra las celdas de la tabla */
+}
+
+nav a {
+    text-decoration: none; /* Elimina subrayados */
+    color: white; /* Texto blanco */
+    background-color: black; /* Fondo negro */
+    display: inline-block; /* Crea un efecto de botón */
+    padding: 10px 20px; /* Añade espacio interno */
+}
+
+/* Estilos para el banner */
+#banner {
+    width: 40%; /* Ancho del 40% del contenedor */
+    height: 40%; /* Altura proporcional al ancho */
+}
+
+/* Configuración de listas */
+#info {
+    list-style-type: none; /* Elimina los puntos de las listas */
+}
+
+#info li {
+    display: block; /* Cada elemento ocupa toda la línea */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 10px; /* Espacio entre elementos de la lista */
+}
+
+/* Estilos para el enlace de llamada a la acción */
+#accion a {
+    color: white; /* Texto blanco */
+    background-color: black; /* Fondo negro */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Efecto de botón */
+    padding: 10px 20px; /* Espaciado interno */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+/* Estilos para el pie de página */
+footer {
+    text-align: center; /* Centra el texto */
+    margin-top: 20px; /* Espacio superior */
+}
+h1,h2,h3,h4 {
+    text-align: center;
+}
