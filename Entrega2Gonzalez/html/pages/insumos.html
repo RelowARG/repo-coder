@@ -4,64 +4,113 @@
     <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos -->
+    
+    <!-- Vinculación a la hoja de estilos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos personalizada -->
+    
     <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del chrome -->
 </head>
 <body>
     <!-- Contenedor para el logo -->
-    <div>
-        <img id="logo" src="../img/logo_label.png" alt="logo"> <!-- Imagen del logo -->
+    <div class="container text-center my-4">
+        <img id="logo" src="../img/logo_label.png" alt="logo" class="img-fluid">
     </div>
+
     <!-- Barra de navegación -->
-    <nav>
-        <table>
-            <tr>
-                <!-- navegacion -->
-                <td><button type="button"><a href="../../index.html">Inicio</a></button></td>
-                <td><button type="button"><a href="../pages/etiquetas.html">Etiquetas</a></button></td>
-                <td><button type="button"><a href="../pages/ribbons.html">Ribbons</a></button></td>
-                <td><button type="button"><a href="../pages/insumos.html">Insumos</a></button></td>
-                <td><button type="button"><a href="../pages/contacto.html">Contacto</a></button></td>
-            </tr>
-        </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">LabelTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/ribbons.html">Ribbons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/insumos.html">Insumos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <main class="container my-5">
         <!-- Título principal -->
-        <div>
-            <h1>UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
-        </div>
+        <h1 class="text-center">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
+
         <!-- Banner principal -->
-        <div>
-            <img id="banner" src="../img/banner.png" alt="banner"> <!-- Imagen del banner -->
+        <div class="text-center my-4">
+            <img id="banner" src="../img/banner.png" alt="banner" class="img-fluid">
         </div>
-        <!-- Insumo pagina -->
-        <div>
-            <h2>Hilos Plasticos / TAG PIN</h2>
+
+        <!-- Insumo página -->
+        <div class="my-4">
+            <h2>Hilos Plásticos / TAG PIN</h2>
         </div>
-        <!-- descripcion insumo -->
-        <h3>Los hilos plásticos, también conocidos como "tag pins" o "hilos de sujeción", son pequeñas hebras de plástico diseñadas para asegurar etiquetas, notas o cualquier tipo de información a objetos. Consisten en una pieza delgada de plástico que se inserta a través de un objeto y luego se asegura mediante un mecanismo de cierre en forma de púa o hebilla en el extremo opuesto. Estos hilos son comunes en entornos de etiquetado y marcaje, como la industria minorista, donde se utilizan para fijar etiquetas de precio, códigos de barras o detalles del producto a la ropa, bolsos u otros artículos. Los hilos plásticos son una solución práctica y temporal para unir información de manera segura, ya que se pueden retirar fácilmente cuando ya no son necesarios</h3>
+
+        <!-- Descripción insumo -->
+        <p class="lead">
+            Los hilos plásticos, también conocidos como "tag pins" o "hilos de sujeción", son pequeñas hebras de plástico diseñadas para asegurar etiquetas, notas o cualquier tipo de información a objetos. Consisten en una pieza delgada de plástico que se inserta a través de un objeto y luego se asegura mediante un mecanismo de cierre en forma de púa o hebilla en el extremo opuesto. Estos hilos son comunes en entornos de etiquetado y marcaje, como la industria minorista, donde se utilizan para fijar etiquetas de precio, códigos de barras o detalles del producto a la ropa, bolsos u otros artículos. Los hilos plásticos son una solución práctica y temporal para unir información de manera segura, ya que se pueden retirar fácilmente cuando ya no son necesarios.
+        </p>
+
         <!-- Llamado a la acción -->
-        <div id="accion">
-            <button type="button"><a href="https://wa.me/541141933835" target="_blank">Contactate con un vendedor!</a></button>
+        <div class="text-center my-4">
+            <button type="button" class="btn btn-primary">
+                <a href="https://wa.me/541141933835" target="_blank" class="text-white text-decoration-none">Contactate con un vendedor!</a>
+            </button>
         </div>
-        <div>
-            <table>
-                <td><img src="../img/item.png" alt="ribbon cera">
-                <P>Hilo Plastico Fino</P></td>
-                <td><img src="../img/item.png" alt="Ribbon cera resina">
-                <P>Hilo Plastico Standard</P></td>
-                <td><img src="../img/item.png" alt="Ribbon Resina Doble">
-                <P>Hilo Plastico Fino Largo</P></td>
-            </table>
+
+        <!-- Productos -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="../img/item.png" alt="Hilo Plastico Fino" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text text-center">Hilo Plastico Fino</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="../img/item.png" alt="Hilo Plastico Standard" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text text-center">Hilo Plastico Standard</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="../img/item.png" alt="Hilo Plastico Fino Largo" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text text-center">Hilo Plastico Fino Largo</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
-    <!-- Pie de página -->
-    <footer>
-        <p>
-            <!-- Enlaces rápidos -->
-            <a href="https://wa.me/541141933835" target="_blank">WhatsApp</a> |
-            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank">Gral Rivas 2345 4a</a>
+
+     <!-- Pie de página -->
+     <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">
+            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
+            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
         </p>
     </footer>
+
+    <!-- Vinculación de Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,85 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos -->
-    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del chrome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>LabelTech - Fábrica de Etiquetas</title>
 </head>
 <body>
-    <!-- Contenedor para el logo -->
-    <div>
-        <img id="logo" src="../img/logo_label.png" alt="Logo de LabelTech"> <!-- Imagen del logo de la empresa -->
+    <div class="container text-center my-4">
+        <img id="logo" src="../img/logo_label.png" alt="Logo de LabelTech" class="img-fluid">
     </div>
-    <!-- Barra de navegación -->
-    <nav>
-        <table>
-            <tr>
-                <!-- Botones de navegación -->
-                <td><button type="button"><a href="../../index.html">Inicio</a></button></td>
-                <td><button type="button"><a href="../pages/etiquetas.html">Etiquetas</a></button></td>
-                <td><button type="button"><a href="../pages/ribbons.html">Ribbons</a></button></td>
-                <td><button type="button"><a href="../pages/insumos.html">Insumos</a></button></td>
-                <td><button type="button"><a href="../pages/contacto.html">Contacto</a></button></td>
-            </tr>
-        </table>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">LabelTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/ribbons.html">Ribbons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/insumos.html">Insumos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>
-        <!-- Título principal con mensaje destacado -->
-        <div>
+    
+
+    <main class="container my-5">
+        <div class="text-center">
             <h1>UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
         </div>
-        <!-- Banner principal -->
-        <div>
-            <img id="banner" src="../img/banner.png" alt="Banner promocional de LabelTech"> <!-- Imagen destacada -->
+        <div class="text-center my-4">
+            <img id="banner" src="../img/banner.png" alt="Banner promocional de LabelTech" class="img-fluid">
         </div>
-        <!-- Descripción breve de los ribbons -->
-        <div>
+        <div class="my-4">
             <h2>Una alta gama de productos y especialidades. Contamos con la capacidad de fabricar materiales y adhesivos con propiedades personalizadas para que sus etiquetas satisfagan sus necesidades.</h2>
         </div>
-        <!-- Lista de características de los ribbons -->
-        <ul id="info">
-            <li>Alta gama de materiales</li>
-            <li>Personalización de adhesivos y materiales</li>            
+        <ul id="info" class="list-group my-4">
+            <li class="list-group-item">Alta gama de materiales</li>
+            <li class="list-group-item">Personalización de adhesivos y materiales</li>
         </ul>
-        <!-- Botón para contactar a un vendedor -->
-        <div id="accion">
-            <button type="button"><a href="https://wa.me/541141933835" target="_blank">Contactate con un vendedor!</a></button>
+        <div class="text-center my-4">
+            <button type="button" class="btn btn-primary">
+                <a href="https://wa.me/541141933835" target="_blank" class="text-white text-decoration-none">Contactate con un vendedor!</a>
+            </button>
         </div>
-        <!-- Imagen adicional sobre materiales -->
-        <div id="material">
-            <img src="../img/item.png" alt="Imagen de etiquetas personalizadas"> <!-- Imagen representativa de materiales -->
+        <div id="material" class="text-center my-4">
+            <img src="../img/item.png" alt="Imagen de etiquetas personalizadas" class="img-fluid">
         </div>
-        <!-- Sección de materiales recomendados -->
-        <h3>MATERIALES RECOMENDADOS</h3>
-        <div>
-            <table>
+
+        <h3 class="text-center my-4">MATERIALES RECOMENDADOS</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
                 <tr>
-                    <!-- Artículos destacados con descripción e imagen -->
-                    <td>
-                        <img src="../img/item.png" alt="Ribbon Cera">
+                    <td class="text-center">
+                        <img src="../img/item.png" alt="Ribbon Cera" class="img-fluid">
                         <p>Ribbon Cera</p>
                     </td>
-                    <td>
-                        <img src="../img/item.png" alt="Ribbon Cera Resina">
+                    <td class="text-center">
+                        <img src="../img/item.png" alt="Ribbon Cera Resina" class="img-fluid">
                         <p>Ribbon Cera Resina</p>
                     </td>
-                    <td>
-                        <img src="../img/item.png" alt="Ribbon Resina Doble">
+                    <td class="text-center">
+                        <img src="../img/item.png" alt="Ribbon Resina Doble" class="img-fluid">
                         <p>Ribbon Resina Doble</p>
                     </td>
                 </tr>
             </table>
         </div>
     </main>
+
     <!-- Pie de página -->
-    <footer>
-        <p>
-            <!-- Enlaces rápidos -->
-            <a href="https://wa.me/541141933835" target="_blank">WhatsApp</a> | <!-- Enlace a WhatsApp -->
-            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank">Gral Rivas 2345 4a</a> <!-- Enlace a la ubicación en Google Maps -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">
+            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
+            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
         </p>
     </footer>
+
+    <!-- Vinculación de Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

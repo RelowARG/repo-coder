@@ -4,71 +4,88 @@
     <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos -->
-    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del chrome -->
+    <title>LabelTech - Fábrica de Etiquetas</title>
+    <!-- Vinculación a Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Vinculación de la hoja de estilos personalizada -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Contenedor para el logo -->
-    <div>
-        <img id="logo" src="../img/logo_label.png" alt="logo"> <!-- Imagen del logo -->
+    <div class="container text-center py-4">
+        <img id="logo" class="img-fluid" src="../img/logo_label.png" alt="Logo LabelTech">
     </div>
+
     <!-- Barra de navegación -->
-    <nav>
-        <table>
-            <tr>
-                <!-- navegacion -->
-                <td><button type="button"><a href="../../index.html">Inicio</a></button></td>
-                <td><button type="button"><a href="../pages/etiquetas.html">Etiquetas</a></button></td>
-                <td><button type="button"><a href="../pages/ribbons.html">Ribbons</a></button></td>
-                <td><button type="button"><a href="../pages/insumos.html">Insumos</a></button></td>
-                <td><button type="button"><a href="../pages/contacto.html">Contacto</a></button></td>
-            </tr>
-        </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">LabelTech</a>
+            <!-- Botón que se muestra en pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Menú de navegación que se expande en pantallas grandes -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/ribbons.html">Ribbons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/insumos.html">Insumos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <main class="container my-5">
         <!-- Título principal -->
-        <div>
-            <h1>UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
+        <div class="text-center mb-4">
+            <h1 class="display-4">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
         </div>
+
         <!-- Banner principal -->
-        <div>
-            <img id="banner" src="../img/banner.png" alt="banner"> <!-- Imagen del banner -->
+        <div class="text-center mb-4">
+            <img id="banner" class="img-fluid" src="../img/banner.png" alt="Banner principal">
         </div>
+
         <!-- Descripción del insumo -->
-        <div>
-            <h2>Una alta gama de productos y especialidades. Contamos con la capacidad de fabricar materiales y adhesivos con propiedades personalizadas para que sus etiquetas satisfagan sus necesidades.</h2>
+        <div class="text-center mb-4">
+            <h2 class="h4">Una alta gama de productos y especialidades</h2>
+            <p>Contamos con la capacidad de fabricar materiales y adhesivos con propiedades personalizadas para que sus etiquetas satisfagan sus necesidades.</p>
         </div>
+
         <!-- Lista de características -->
-        <ul id="info">
-            <li>Alta gama de materiales</li>
-            <li>Personalizacion de adhesivos y materiales</li>            
+        <ul id="info" class="list-group list-group-flush text-center mb-4">
+            <li class="list-group-item">Alta gama de materiales</li>
+            <li class="list-group-item">Personalización de adhesivos y materiales</li>
         </ul>
+
         <!-- Llamado a la acción -->
-        <div id="accion">
-            <button type="button"><a href="https://wa.me/541141933835" target="_blank">Contactate con un vendedor!</a></button>
+        <div class="text-center my-4">
+            <button type="button" class="btn btn-primary">
+                <a href="https://wa.me/541141933835" target="_blank" class="text-white text-decoration-none">Contactate con un vendedor!</a>
+            </button>
         </div>
-        <div id="material">
-            <img src="../img/item.png" alt="imagen etiquetas">
-        </div>
-        <h3>MATERIALES RECOMENDADOS</h3>
-        <div>
-            <table>
-                <td><img src="../img/item.png" alt="transf termica">
-                <P>Transferencia Termica</P></td>
-                <td><img src="../img/item.png" alt="termico directo">
-                <P>Termico Directo</P></td>
-                <td><img src="../img/item.png" alt="Polipropileno Blanco (opp)">
-                <P>Polipropileno Blanco (OPP)</P></td>
-            </table>
-        </div>
-    </main>
-    <!-- Pie de página -->
-    <footer>
-        <p>
-            <!-- Enlaces rápidos -->
-            <a href="https://wa.me/541141933835" target="_blank">WhatsApp</a> |
-            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank">Gral Rivas 2345 4a</a>
-        </p>
-    </footer>
-</body>
-</html>
+            <!-- Pie de página -->
+            <footer class="bg-dark text-white text-center py-3 mt-5">
+                <p class="mb-0">
+                    <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
+                    <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
+                </p>
+            </footer>
+        
+            <!-- Vinculación de Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+        </html>
+        

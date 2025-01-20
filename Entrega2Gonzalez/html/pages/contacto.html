@@ -4,62 +4,85 @@
     <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos -->
-    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del chrome -->
+
+    <!-- Vinculación de Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del navegador -->
 </head>
-<body>
+<body class="bg-light">
     <!-- Contenedor para el logo -->
-    <div>
-        <img id="logo" src="../img/logo_label.png" alt="logo"> <!-- Imagen del logo -->
+    <div class="container text-center my-3">
+        <img id="logo" class="img-fluid w-50" src="../img/logo_label.png" alt="Logo de LabelTech">
     </div>
+
     <!-- Barra de navegación -->
-    <nav>
-        <table>
-            <tr>
-                <!-- navegacion -->
-                <td><button type="button"><a href="../../index.html">Inicio</a></button></td>
-                <td><button type="button"><a href="../pages/etiquetas.html">Etiquetas</a></button></td>
-                <td><button type="button"><a href="../pages/ribbons.html">Ribbons</a></button></td>
-                <td><button type="button"><a href="../pages/insumos.html">Insumos</a></button></td>
-                <td><button type="button"><a href="../pages/contacto.html">Contacto</a></button></td>
-            </tr>
-        </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">LabelTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/ribbons.html">Ribbons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/insumos.html">Insumos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <!-- Contenido principal -->
+    <main class="container my-5">
         <!-- Título principal -->
-        <div>
-            <h1>UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
+        <div class="text-center">
+            <h1 class="display-4 fw-bold">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
         </div>
+
         <!-- Banner principal -->
-        <div>
-            <img id="banner" src="../img/banner.png" alt="banner"> <!-- Imagen del banner -->
+        <div class="text-center my-4">
+            <img id="banner" class="img-fluid rounded" src="../img/banner.png" alt="Banner principal de LabelTech">
         </div>
-        <!-- formulario contacto -->
-        <div>
-            <h2>Contactanos</h2>
+
+        <!-- Formulario de contacto -->
+        <div class="bg-white p-4 rounded shadow-sm">
+            <h2 class="text-center mb-4">Contáctanos</h2>
             <form action="" method="post">
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre" required><br><br>
-                
-                <label for="email">Correo Electrónico:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
-                
-                <label for="empresa">Empresa:</label><br>
-                <input type="text" id="empresa" name="empresa"><br><br>
-                
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br><br>
-                
-                <button type="submit">Enviar</button>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="empresa" class="form-label">Empresa:</label>
+                    <input type="text" class="form-control" id="empresa" name="empresa">
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje:</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
             </form>
+        </div>
     </main>
+
     <!-- Pie de página -->
-    <footer>
-        <p>
-            <!-- Enlaces rápidos -->
-            <a href="https://wa.me/541141933835" target="_blank">WhatsApp</a> |
-            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank">Gral Rivas 2345 4a</a>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">
+            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
+            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
         </p>
     </footer>
+
+    <!-- Vinculación de Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
