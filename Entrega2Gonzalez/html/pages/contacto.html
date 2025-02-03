@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabelTech - Contacto</title>
 
     <!-- Vinculación de Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del navegador -->
 </head>
 <body class="bg-light">
+
     <!-- Contenedor para el logo -->
-    <div class="container text-center my-3">
+    <header class="container text-center my-3">
         <img id="logo" class="img-fluid w-50" src="../img/logo_label.png" alt="Logo de LabelTech">
-    </div>
+    </header>
 
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a></li>
                     <li class="nav-item"><a class="nav-link" href="../pages/ribbons.html">Ribbons</a></li>
                     <li class="nav-item"><a class="nav-link" href="../pages/insumos.html">Insumos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../pages/contacto.html">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../pages/contacto.html">Contacto</a></li>
                 </ul>
             </div>
         </div>
@@ -37,10 +36,7 @@
 
     <!-- Contenido principal -->
     <main class="container my-5">
-        <!-- Título principal -->
-        <div class="text-center">
-            <h1 class="display-4 fw-bold">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
-        </div>
+        <h1 class="display-4 text-center fw-bold">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
 
         <!-- Banner principal -->
         <div class="text-center my-4">
@@ -48,41 +44,42 @@
         </div>
 
         <!-- Formulario de contacto -->
-        <div class="bg-white p-4 rounded shadow-sm">
+        <div class="bg-white p-4 rounded shadow-sm mx-auto" style="max-width: 600px;">
             <h2 class="text-center mb-4">Contáctanos</h2>
-            <form action="" method="post">
+            <form action="mailto:tucorreo@empresa.com" method="post" enctype="text/plain">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required aria-label="Nombre completo">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" required aria-label="Correo Electrónico">
                 </div>
                 <div class="mb-3">
                     <label for="empresa" class="form-label">Empresa:</label>
-                    <input type="text" class="form-control" id="empresa" name="empresa">
+                    <input type="text" class="form-control" id="empresa" name="empresa" aria-label="Nombre de la empresa">
                 </div>
                 <div class="mb-3">
                     <label for="mensaje" class="form-label">Mensaje:</label>
-                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required aria-label="Escribe tu mensaje"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Enviar</button>
                 </div>
             </form>
         </div>
     </main>
 
     <!-- Pie de página -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="container-fluid bg-dark text-white text-center py-3 mt-5">
         <p class="mb-0">
-            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
-            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
+            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white fw-bold">WhatsApp</a> |
+            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white fw-bold">Gral Rivas 2345 4a</a>
         </p>
     </footer>
 
-    <!-- Vinculación de Bootstrap JS -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

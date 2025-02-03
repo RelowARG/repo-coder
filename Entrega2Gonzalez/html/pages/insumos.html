@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración de caracteres y metadatos para dispositivos responsivos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Vinculación a la hoja de estilos de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css"> <!-- Vinculación de la hoja de estilos personalizada -->
-    
-    <title>LabelTech - Fábrica de Etiquetas</title> <!-- Título que aparece en la pestaña del chrome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>LabelTech - Insumos</title>
 </head>
 <body>
-    <!-- Contenedor para el logo -->
     <div class="container text-center my-4">
-        <img id="logo" src="../img/logo_label.png" alt="logo" class="img-fluid">
+        <img id="logo" src="../img/logo_label.png" alt="Logo de LabelTech" class="img-fluid">
     </div>
 
-    <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">LabelTech</a>
@@ -27,59 +20,41 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/ribbons.html">Ribbons</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/insumos.html">Insumos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/contacto.html">Contacto</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/etiquetas.html">Etiquetas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/ribbons.html">Ribbons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/insumos.html">Insumos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../pages/contacto.html">Contacto</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <!-- Título principal -->
-        <h1 class="text-center">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
+    <main class="container my-5 text-center">
+        <h1 class="fw-bold">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
 
-        <!-- Banner principal -->
-        <div class="text-center my-4">
-            <img id="banner" src="../img/banner.png" alt="banner" class="img-fluid">
-        </div>
-
-        <!-- Insumo página -->
         <div class="my-4">
-            <h2>Hilos Plásticos / TAG PIN</h2>
+            <img id="banner" src="../img/banner.png" alt="Banner promocional de LabelTech" class="img-fluid">
         </div>
 
-        <!-- Descripción insumo -->
+        <h2 class="my-4">Hilos Plásticos / TAG PIN</h2>
+
         <p class="lead">
-            Los hilos plásticos, también conocidos como "tag pins" o "hilos de sujeción", son pequeñas hebras de plástico diseñadas para asegurar etiquetas, notas o cualquier tipo de información a objetos. Consisten en una pieza delgada de plástico que se inserta a través de un objeto y luego se asegura mediante un mecanismo de cierre en forma de púa o hebilla en el extremo opuesto. Estos hilos son comunes en entornos de etiquetado y marcaje, como la industria minorista, donde se utilizan para fijar etiquetas de precio, códigos de barras o detalles del producto a la ropa, bolsos u otros artículos. Los hilos plásticos son una solución práctica y temporal para unir información de manera segura, ya que se pueden retirar fácilmente cuando ya no son necesarios.
+            Los hilos plásticos, también conocidos como "tag pins", son pequeñas hebras de plástico diseñadas para asegurar etiquetas, notas o información a objetos. Son comunes en la industria minorista para fijar etiquetas de precio, códigos de barras o detalles de productos en ropa y accesorios. Su uso es práctico y seguro, permitiendo una fácil remoción cuando ya no son necesarios.
         </p>
 
-        <!-- Llamado a la acción -->
-        <div class="text-center my-4">
-            <button type="button" class="btn btn-primary">
-                <a href="https://wa.me/541141933835" target="_blank" class="text-white text-decoration-none">Contactate con un vendedor!</a>
-            </button>
+        <div class="my-4">
+            <a href="https://wa.me/541141933835" target="_blank" class="btn btn-primary btn-lg text-white">¡Contactate con un vendedor!</a>
         </div>
 
-        <!-- Productos -->
+        <h3 class="fw-bold my-4">Productos Disponibles</h3>
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
                     <img src="../img/item.png" alt="Hilo Plastico Fino" class="card-img-top">
                     <div class="card-body">
-                        <p class="card-text text-center">Hilo Plastico Fino</p>
+                        <p class="card-text text-center fw-semibold">Hilo Plástico Fino</p>
                     </div>
                 </div>
             </div>
@@ -87,7 +62,7 @@
                 <div class="card">
                     <img src="../img/item.png" alt="Hilo Plastico Standard" class="card-img-top">
                     <div class="card-body">
-                        <p class="card-text text-center">Hilo Plastico Standard</p>
+                        <p class="card-text text-center fw-semibold">Hilo Plástico Standard</p>
                     </div>
                 </div>
             </div>
@@ -95,22 +70,20 @@
                 <div class="card">
                     <img src="../img/item.png" alt="Hilo Plastico Fino Largo" class="card-img-top">
                     <div class="card-body">
-                        <p class="card-text text-center">Hilo Plastico Fino Largo</p>
+                        <p class="card-text text-center fw-semibold">Hilo Plástico Fino Largo</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-     <!-- Pie de página -->
-     <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="bg-dark text-white text-center py-3 mt-5">
         <p class="mb-0">
             <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
             <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
         </p>
     </footer>
 
-    <!-- Vinculación de Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
