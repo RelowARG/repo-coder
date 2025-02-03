@@ -1,0 +1,55 @@
+/* General: Elimina márgenes y rellenos con clases de Bootstrap (container elimina la necesidad de estos ajustes) */
+
+/* Configuración del cuerpo */
+body {
+    background-color: lightgray; /* Fondo gris claro */
+}
+
+/* Estilos para el logo */
+#logo {
+    width: 50%; /* Puedes usar la clase de Bootstrap w-50 directamente en HTML */
+    margin: 0 auto; /* Centra el logo si no se usa text-center en HTML */
+}
+
+/* Estilos para la barra de navegación: Usar clases de Bootstrap elimina la necesidad de estos estilos */
+nav a {
+    text-decoration: none; /* Las utilidades Bootstrap como text-decoration-none pueden reemplazar esto */
+}
+
+/* Banner */
+#banner {
+    width: 40%; /* Utiliza clases como w-40 directamente en HTML */
+    height: auto; /* Para mantener proporción de aspecto */
+    margin: 0 auto; /* Centra la imagen si no se usa text-center en HTML */
+}
+
+/* Configuración de listas */
+#info {
+    list-style-type: none; /* Bootstrap tiene list-group y utilidades para listas sin estilos */
+    padding: 0; /* Elimina relleno si no usas list-group */
+}
+
+#info li {
+    margin-bottom: 10px; /* Usa clases como mb-2 directamente en HTML */
+}
+
+/* Estilos para el enlace de llamada a la acción */
+#accion a {
+    color: white; /* Mantén este color para personalizar si Bootstrap no cubre tus necesidades */
+    background-color: black; /* Usa clases como btn-dark si prefieres inline */
+    text-decoration: none; /* Usa text-decoration-none de Bootstrap */
+    display: inline-block; /* Puede ser reemplazado por btn clases */
+    padding: 10px 20px; /* Bootstrap ya tiene paddings predefinidos */
+    margin-top: 20px; /* Usa mt-3 para márgenes superiores */
+}
+
+/* Estilos para el pie de página */
+footer {
+    text-align: center; /* Usa clases como text-center directamente */
+    margin-top: 20px; /* Usa mt-3 o mt-4 */
+}
+
+/* Estilos de encabezados */
+h1, h2, h3, h4 {
+    text-align: center; /* Usa text-center directamente en los encabezados en HTML */
+}
