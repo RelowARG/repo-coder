@@ -7,72 +7,13 @@ body {
 /* Mixin para centrar elementos */
 /* Mixin para listas sin estilo */
 /* Mixin para botones reutilizables */
-/* Colores de la interfaz */
-/* Botones con mapa de estilos */
-/* Aplicación de botones con mapa */
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.btn-primary:hover {
-  opacity: 0.8;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.btn-secondary:hover {
-  opacity: 0.8;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.btn-danger:hover {
-  opacity: 0.8;
-}
-
-.btn-success {
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.btn-success:hover {
-  opacity: 0.8;
-}
-
 /* Clase base para centrar texto */
 .centrado, h1, h2, h3, h4, footer {
   text-align: center;
 }
 
 /* Clase base para botones */
-.boton, #accion a, .boton-redondo, #scrollTopBtn {
+.boton, #accion a, .boton-redondo {
   background-color: black;
   color: white;
   text-decoration: none;
@@ -80,10 +21,11 @@ body {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Añadir transición */
 }
 
 /* Clase específica para botones redondos */
-.boton-redondo, #scrollTopBtn {
+.boton-redondo {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -91,19 +33,44 @@ body {
   font-size: 20px;
   padding: 20px;
   display: none;
+  transition: opacity 0.5s ease, transform 0.3s ease; /* Transición de opacidad y escala */
 }
 
-/* Aplicamos estilos optimizados */
-#logo, #banner {
+/* Mostrar el botón cuando se haga scroll */
+#scrollTopBtn.show {
+  display: block;
+  opacity: 1; /* Aparece cuando la clase 'show' está activa */
+  transform: scale(1.1); /* Agranda el botón al aparecer */
+}
+
+/* Transformación en el logo */
+#logo {
   margin: 0 auto;
   display: block;
   width: 50%;
+  transition: transform 0.3s ease-in-out;
 }
 
-#banner {
-  width: 40%;
+/* Animación de barrido en el logo */
+@keyframes barrido-logo {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+#logo {
+  animation: barrido-logo 3s forwards;
 }
 
+/* Estilos adicionales */
 #info {
   list-style-type: none;
   padding: 0;
@@ -118,26 +85,33 @@ body {
   margin-top: 20px;
 }
 
-#scrollTopBtn {
-  background-color: #000;
+/* Transición en el color de fondo de los botones */
+.boton:hover, .boton-redondo:hover, #accion a:hover {
+  background-color: #28a745; /* Cambio a verde */
+  transform: scale(1.05); /* Escala ligeramente el botón */
 }
 
-/* Mostrar el botón cuando se haga scroll */
-#scrollTopBtn.show {
+/* Eliminar animación en el banner */
+#banner {
+  margin: 0 auto;
   display: block;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  height: auto;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Estilos de colores de la interfaz */
-.background {
-  background-color: #f8f9fa;
+/* Estilo en el logo y banner para efecto hover */
+#logo:hover, #banner:hover {
+  transform: scale(1.1); /* Escala el logo o banner al 110% */
 }
 
-.primary-text {
-  background-color: #212529;
-}
-
-.link-color {
-  background-color: #007bff;
+/* Nueva clase para el banner sin animaciones (en el flujo normal de la página) */
+.fixed-banner {
+  /* Aquí no se establece posición fija ni z-index, solo la imagen normal */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  height: auto;
+  /* No se aplica animación */
+  transition: none;
 }
 
 /*# sourceMappingURL=styles.css.map */

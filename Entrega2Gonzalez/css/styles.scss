@@ -24,39 +24,7 @@ body {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-}
-
-/* Colores de la interfaz */
-$interface-colors: (
-    background: #f8f9fa,
-    primary-text: #212529,
-    link-color: #007bff
-);
-
-/* Botones con mapa de estilos */
-$button-styles: (
-  primary: (background-color: #007bff, color: white, border-radius: 5px),
-  secondary: (background-color: #6c757d, color: white, border-radius: 5px),
-  danger: (background-color: #dc3545, color: white, border-radius: 5px),
-  success: (background-color: #28a745, color: white, border-radius: 5px)
-);
-
-/* Aplicación de botones con mapa */
-@each $name, $styles in $button-styles {
-  .btn-#{$name} {
-    background-color: map-get($styles, background-color);
-    color: map-get($styles, color);
-    border-radius: map-get($styles, border-radius);
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    
-    &:hover {
-      opacity: 0.8;
-    }
-  }
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Añadir transición */
 }
 
 /* Clase base para centrar texto */
@@ -79,20 +47,46 @@ $button-styles: (
     font-size: 20px;
     padding: 20px;
     display: none;
+    transition: opacity 0.5s ease, transform 0.3s ease; /* Transición de opacidad y escala */
 }
 
-/* Aplicamos estilos optimizados */
-h1, h2, h3, h4, footer {
-    @extend .centrado;
+/* Mostrar el botón cuando se haga scroll */
+#scrollTopBtn.show {
+    display: block;
+    opacity: 1; /* Aparece cuando la clase 'show' está activa */
+    transform: scale(1.1); /* Agranda el botón al aparecer */
 }
 
-#logo, #banner {
+/* Transformación en el logo */
+#logo {
     @include centrar;
     width: 50%;
+    transition: transform 0.3s ease-in-out;
 }
 
-#banner {
-    width: 40%;
+/* Animación de barrido en el logo */
+@keyframes barrido-logo {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+#logo {
+    animation: barrido-logo 3s forwards;
+}
+
+/* Estilos adicionales */
+h1, h2, h3, h4, footer {
+    @extend .centrado;
 }
 
 #info {
@@ -109,20 +103,30 @@ h1, h2, h3, h4, footer {
     margin-top: 20px;
 }
 
-#scrollTopBtn {
-    @extend .boton-redondo;
-    background-color: #000;
+/* Transición en el color de fondo de los botones */
+.boton:hover {
+    background-color: #28a745; /* Cambio a verde */
+    transform: scale(1.05); /* Escala ligeramente el botón */
 }
 
-/* Mostrar el botón cuando se haga scroll */
-#scrollTopBtn.show {
-    display: block;
+/* Eliminar animación en el banner */
+#banner {
+    @include centrar;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Estilos de colores de la interfaz */
-@each $color-name, $color-value in $interface-colors {
-    .#{$color-name} {
-        background-color: $color-value;
-    }
+/* Estilo en el logo y banner para efecto hover */
+#logo:hover, #banner:hover {
+    transform: scale(1.1); /* Escala el logo o banner al 110% */
 }
 
+/* Nueva clase para el banner sin animaciones (en el flujo normal de la página) */
+.fixed-banner {
+    /* Aquí no se establece posición fija ni z-index, solo la imagen normal */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    height: auto;
+    /* No se aplica animación */
+    transition: none;
+}
