@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Configuración de la codificación de caracteres y la visualización en dispositivos móviles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enlace al archivo CSS de Bootstrap desde un CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Enlace al archivo CSS local para estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Título de la página -->
     <title>LabelTech - Fábrica de Etiquetas</title>
 </head>
 <body>
+    <!-- Contenedor para el logo de la empresa centrado en la página con márgenes verticales -->
     <div class="text-center my-3">
         <img id="logo" class="img-fluid" src="./html/img/logo_label.png" alt="Logo de LabelTech">
     </div>
 
+    <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+            <!-- Logo y enlace de la página principal -->
             <a class="navbar-brand" href="index.html">LabelTech</a>
+            <!-- Botón para navegar en dispositivos móviles -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Menú de navegación -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <!-- Enlaces a las páginas del sitio -->
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="./html/pages/etiquetas.html">Etiquetas</a></li>
                     <li class="nav-item"><a class="nav-link" href="./html/pages/ribbons.html">Ribbons</a></li>
@@ -30,25 +43,37 @@
         </div>
     </nav>
     
+    <!-- Contenido principal de la página -->
     <main class="container text-center my-5">
+        <!-- Título principal de la página -->
         <h1 class="display-4 fw-bold">UN SOLO PROVEEDOR, TODAS LAS SOLUCIONES</h1>
+        
+        <!-- Imagen del banner con clase 'fixed-banner' aplicada para que se quede fija -->
         <div class="my-4">
             <img id="banner" class="img-fluid rounded fixed-banner" src="./html/img/banner.jpg" alt="Banner principal de LabelTech">
         </div>
+        
+        <!-- Subtítulo -->
         <h2 class="h5 my-3">Somos Label Tech, una empresa Argentina con más de 10 años de experiencia en etiquetas adhesivas personalizadas según tus necesidades.</h2>
+        
+        <!-- Lista de características de la empresa -->
         <ul id="info" class="list-group list-group-flush text-start mx-auto">
             <li class="list-group-item"><strong>Máquinas modernas:</strong> Prensas flexográficas de última tecnología que imprimen hasta 8 tintas en diferentes materiales.</li>
             <li class="list-group-item"><strong>Soluciones completas:</strong> Experiencia y amplio catálogo de productos para satisfacer las necesidades de etiquetado en todas las industrias.</li>
             <li class="list-group-item"><strong>Calidad inigualable:</strong> Trabajamos con los mejores proveedores y marcas a nivel mundial, nunca sacrificando la calidad de nuestros productos.</li>
             <li class="list-group-item"><strong>Relaciones duraderas:</strong> Establecemos relaciones sólidas con nuestros clientes gracias a nuestra excelencia y compromiso.</li>
         </ul>
+
+        <!-- Botón de llamada a la acción para contactar con un vendedor -->
         <div id="accion" class="my-4">
             <a href="https://wa.me/541141933835" target="_blank" class="btn btn-success btn-lg">¡Contactate con un vendedor!</a>
         </div>
     </main>
 
+    <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
         <p class="mb-0">
+            <!-- Enlaces a WhatsApp y dirección -->
             <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
             <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
         </p>
@@ -57,11 +82,14 @@
     <!-- Botón para volver al inicio -->
     <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
 
-    <!-- Scripts -->
+    <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para mostrar el botón de volver al inicio cuando se hace scroll -->
     <script>
         window.onscroll = function() {
             var btn = document.getElementById("scrollTopBtn");
+            // Si el usuario ha desplazado hacia abajo más de 100px, muestra el botón
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 btn.classList.add("show");
             } else {
