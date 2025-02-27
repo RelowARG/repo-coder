@@ -1,57 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Impuestos</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
-
 <body>
     <div class="container">
-        <h1>Simulador de Impuestos y Ganancias</h1>
+        <h1>Simulador de Impuestos</h1>
         
         <!-- Formulario de entrada de datos -->
         <div id="formulario">
-            <label for="fecha">Fecha:</label>
+            <label for="fecha">Fecha</label>
             <input type="date" id="fecha">
             
-            <label for="nroFactura">Nro. Factura:</label>
+            <label for="nroFactura">Número de Factura</label>
             <input type="text" id="nroFactura">
             
-            <label for="cliente">Cliente:</label>
+            <label for="cliente">Cliente</label>
             <input type="text" id="cliente">
             
-            <label for="estado">Estado:</label>
-            <input type="text" id="estado">
+            <label for="estado">Estado</label>
+            <select id="estado">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Pagado">Pagado</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
             
-            <label for="pago">Pago:</label>
-            <input type="text" id="pago">
+            <label for="pago">Forma de Pago</label>
+            <select id="pago">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
             
-            <label for="neto">Neto:</label>
-            <input type="number" id="neto">
+            <label for="neto">Valor Neto</label>
+            <input type="number" id="neto" step="0.01" placeholder="Ingrese valor sin IVA">
             
-            <label for="iva">IVA:</label>
+            <label for="iva">IVA (%)</label>
             <select id="iva">
                 <option value="21">21%</option>
                 <option value="10.5">10.5%</option>
                 <option value="27">27%</option>
             </select>
             
-            <label for="costoMercaderia">Costo de Mercadería:</label>
-            <input type="number" id="costoMercaderia">
+            <label for="costoMercaderia">Costo de Mercadería</label>
+            <input type="number" id="costoMercaderia" step="0.01" placeholder="Ingrese costo de mercadería">
         </div>
-
-        <!-- Botón para confirmar el cálculo -->
+        
+        <!-- Botones -->
         <button id="calcularBtn">Calcular</button>
+        <button id="limpiarBtn">Limpiar</button>
 
         <!-- Tabla de resultados -->
         <table id="tablaResultados">
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Nro. Factura</th>
+                    <th>Nro Factura</th>
                     <th>Cliente</th>
                     <th>Estado</th>
                     <th>Pago</th>
@@ -62,32 +69,17 @@
                     <th>Imp. Transferencias</th>
                     <th>Imp. Ganancias</th>
                     <th>Impuestos Totales</th>
-                    <th>Costo Mercaderia</th>
+                    <th>Costo Mercadería</th>
                     <th>Ganancia</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td id="colFecha"></td>
-                    <td id="colNroFactura"></td>
-                    <td id="colCliente"></td>
-                    <td id="colEstado"></td>
-                    <td id="colPago"></td>
-                    <td id="colNeto"></td>
-                    <td id="colIVA"></td>
-                    <td id="colTotal"></td>
-                    <td id="colIIBB"></td>
-                    <td id="colImpTransf"></td>
-                    <td id="colImpGanancias"></td>
-                    <td id="colImpTotales"></td>
-                    <td id="colCostoMercaderia"></td>
-                    <td id="colGanancia"></td>
-                </tr>
+                <!-- Los registros se llenarán dinámicamente -->
             </tbody>
         </table>
     </div>
 
     <script src="javascript/simulador.js"></script>
 </body>
-
 </html>

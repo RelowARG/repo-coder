@@ -1,6 +1,3 @@
-// Array para almacenar los registros
-let registros = [];
-
 // Función para pedir el nombre del usuario con Prompt
 function pedirDatos() {
     let usuario = prompt("¿Quién está utilizando el simulador?", "Nombre del usuario");
@@ -22,7 +19,7 @@ function confirmarCalculo() {
     }
 }
 
-// Función para actualizar la tabla con los cálculos y almacenar los datos en el array
+// Función para actualizar la tabla con los cálculos
 function actualizarTabla() {
     // Obtiene los valores de las variables
     let valorSinIVA = parseFloat(document.getElementById('neto').value) || 0;
@@ -46,7 +43,7 @@ function actualizarTabla() {
     // Calcula la ganancia
     let ganancia = valorSinIVA - impuestosTotales - costoMercaderia;
 
-    // Crea un objeto con los datos y los cálculos
+    // Guarda los resultados en un objeto para almacenarlos en el localStorage
     let registro = {
         fecha: document.getElementById('fecha').value,
         nroFactura: document.getElementById('nroFactura').value,
@@ -61,38 +58,86 @@ function actualizarTabla() {
         impGanancias: impGanancias.toFixed(2),
         impuestosTotales: impuestosTotales.toFixed(2),
         costoMercaderia: costoMercaderia.toFixed(2),
-        ganancia: ganancia.toFixed(2)
+        ganancia: ganancia.toFixed(2),
     };
 
-    // Agrega el objeto al array de registros
+    // Recuperar los registros del localStorage
+    let registros = JSON.parse(localStorage.getItem("registros")) || [];
     registros.push(registro);
 
-    // Llama a la función para mostrar los registros en la tabla
+    // Guardar los registros actualizados en localStorage
+    localStorage.setItem("registros", JSON.stringify(registros));
+
+    // Llama a la función para actualizar la tabla
     mostrarRegistros();
 }
 
-// Función para mostrar los registros en la tabla
+// Función para mostrar los registros almacenados en la tabla
 function mostrarRegistros() {
-    let tbody = document.querySelector("#tablaResultados tbody");
-    tbody.innerHTML = ''; // Limpia la tabla antes de mostrar los nuevos registros
+    let registros = JSON.parse(localStorage.getItem("registros")) || [];
+    let tablaBody = document.querySelector("#tablaResultados tbody");
+    tablaBody.innerHTML = ""; // Limpiar la tabla antes de agregar los nuevos datos
 
-    registros.forEach(registro => {
-        let tr = document.createElement("tr");
-
-        // Crea una fila con los datos del registro
-        Object.values(registro).forEach(valor => {
-            let td = document.createElement("td");
-            td.textContent = valor;
-            tr.appendChild(td);
-        });
-
-        // Añade la fila a la tabla
-        tbody.appendChild(tr);
+    registros.forEach((registro, index) => {
+        let fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td>${registro.fecha}</td>
+            <td>${registro.nroFactura}</td>
+            <td>${registro.cliente}</td>
+            <td>${registro.estado}</td>
+            <td>${registro.pago}</td>
+            <td>${registro.neto}</td>
+            <td>${registro.iva}</td>
+            <td>${registro.total}</td>
+            <td>${registro.iibb}</td>
+            <td>${registro.impTransferencias}</td>
+            <td>${registro.impGanancias}</td>
+            <td>${registro.impuestosTotales}</td>
+            <td>${registro.costoMercaderia}</td>
+            <td>${registro.ganancia}</td>
+            <td><button onclick="editarRegistro(${index})">Editar</button></td>
+        `;
+        tablaBody.appendChild(fila);
     });
+}
+
+// Función para editar un registro de la tabla
+function editarRegistro(index) {
+    let registros = JSON.parse(localStorage.getItem("registros")) || [];
+    let registro = registros[index];
+
+    // Pre-llenar los campos con los datos del registro
+    document.getElementById('fecha').value = registro.fecha;
+    document.getElementById('nroFactura').value = registro.nroFactura;
+    document.getElementById('cliente').value = registro.cliente;
+    document.getElementById('estado').value = registro.estado;
+    document.getElementById('pago').value = registro.pago;
+    document.getElementById('neto').value = registro.neto;
+    document.getElementById('iva').value = registro.iva;
+    document.getElementById('costoMercaderia').value = registro.costoMercaderia;
+
+    // Eliminar el registro original del localStorage
+    registros.splice(index, 1);
+    localStorage.setItem("registros", JSON.stringify(registros));
+
+    // Llamar a la función para actualizar la tabla
+    mostrarRegistros();
+}
+
+// Función para limpiar el localStorage y la tabla
+function limpiarDatos() {
+    localStorage.removeItem("registros");
+    mostrarRegistros(); // Limpiar la tabla visualmente
 }
 
 // Llama a la función pedirDatos al cargar la página
 window.onload = function() {
     pedirDatos();
+    mostrarRegistros(); // Mostrar los registros al cargar la página
+
+    // Agregar evento para el botón de cálculo
     document.getElementById('calcularBtn').addEventListener('click', confirmarCalculo);
+
+    // Agregar evento para el botón de limpiar
+    document.getElementById('limpiarBtn').addEventListener('click', limpiarDatos);
 };
