@@ -1,3 +1,6 @@
+// Array para almacenar los registros
+let registros = [];
+
 // Función para pedir el nombre del usuario con Prompt
 function pedirDatos() {
     let usuario = prompt("¿Quién está utilizando el simulador?", "Nombre del usuario");
@@ -19,7 +22,7 @@ function confirmarCalculo() {
     }
 }
 
-// Función para actualizar la tabla con los cálculos
+// Función para actualizar la tabla con los cálculos y almacenar los datos en el array
 function actualizarTabla() {
     // Obtiene los valores de las variables
     let valorSinIVA = parseFloat(document.getElementById('neto').value) || 0;
@@ -43,21 +46,49 @@ function actualizarTabla() {
     // Calcula la ganancia
     let ganancia = valorSinIVA - impuestosTotales - costoMercaderia;
 
-    // Muestra los resultados en la tabla
-    document.getElementById('colFecha').textContent = document.getElementById('fecha').value;
-    document.getElementById('colNroFactura').textContent = document.getElementById('nroFactura').value;
-    document.getElementById('colCliente').textContent = document.getElementById('cliente').value;
-    document.getElementById('colEstado').textContent = document.getElementById('estado').value;
-    document.getElementById('colPago').textContent = document.getElementById('pago').value;
-    document.getElementById('colNeto').textContent = valorSinIVA.toFixed(2);
-    document.getElementById('colIVA').textContent = ivaCalculado.toFixed(2);
-    document.getElementById('colTotal').textContent = total.toFixed(2);
-    document.getElementById('colIIBB').textContent = iibb.toFixed(2);
-    document.getElementById('colImpTransf').textContent = impTransferencias.toFixed(2);
-    document.getElementById('colImpGanancias').textContent = impGanancias.toFixed(2);
-    document.getElementById('colImpTotales').textContent = impuestosTotales.toFixed(2);
-    document.getElementById('colCostoMercaderia').textContent = costoMercaderia.toFixed(2);
-    document.getElementById('colGanancia').textContent = ganancia.toFixed(2);
+    // Crea un objeto con los datos y los cálculos
+    let registro = {
+        fecha: document.getElementById('fecha').value,
+        nroFactura: document.getElementById('nroFactura').value,
+        cliente: document.getElementById('cliente').value,
+        estado: document.getElementById('estado').value,
+        pago: document.getElementById('pago').value,
+        neto: valorSinIVA.toFixed(2),
+        iva: ivaCalculado.toFixed(2),
+        total: total.toFixed(2),
+        iibb: iibb.toFixed(2),
+        impTransferencias: impTransferencias.toFixed(2),
+        impGanancias: impGanancias.toFixed(2),
+        impuestosTotales: impuestosTotales.toFixed(2),
+        costoMercaderia: costoMercaderia.toFixed(2),
+        ganancia: ganancia.toFixed(2)
+    };
+
+    // Agrega el objeto al array de registros
+    registros.push(registro);
+
+    // Llama a la función para mostrar los registros en la tabla
+    mostrarRegistros();
+}
+
+// Función para mostrar los registros en la tabla
+function mostrarRegistros() {
+    let tbody = document.querySelector("#tablaResultados tbody");
+    tbody.innerHTML = ''; // Limpia la tabla antes de mostrar los nuevos registros
+
+    registros.forEach(registro => {
+        let tr = document.createElement("tr");
+
+        // Crea una fila con los datos del registro
+        Object.values(registro).forEach(valor => {
+            let td = document.createElement("td");
+            td.textContent = valor;
+            tr.appendChild(td);
+        });
+
+        // Añade la fila a la tabla
+        tbody.appendChild(tr);
+    });
 }
 
 // Llama a la función pedirDatos al cargar la página
