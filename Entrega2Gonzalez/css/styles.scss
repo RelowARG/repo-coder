@@ -1,131 +1,134 @@
-/* General */
+/* Estilos generales */
 body {
-    background-color: lightgray;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
-/* Mixin para centrar elementos */
-@mixin centrar {
-    margin: 0 auto;
-    display: block;
+/* Estilo para el logo */
+#logo {
+    max-width: 200px;
+    margin-bottom: 20px;
 }
 
-/* Mixin para listas sin estilo */
-@mixin lista-sin-estilo {
-    list-style-type: none;
-    padding: 0;
+/* Barra de navegación */
+.navbar {
+    margin-bottom: 30px;
 }
 
-/* Mixin para botones reutilizables */
-@mixin boton($bg-color, $text-color) {
-    background-color: $bg-color;
-    color: $text-color;
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ff8c00;
+}
+
+/* Estilo para el título principal */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Estilo para el formulario de contacto */
+.form-label {
+    font-weight: bold;
+}
+
+/* Contenedor del formulario */
+.bg-white {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del botón */
+.boton, #accion a, .boton-redondo {
+    background-color: black;
+    color: white;
     text-decoration: none;
     display: inline-block;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease; /* Añadir transición */
-}
-
-/* Clase base para centrar texto */
-.centrado {
+    border-radius: 20px; /* Bordes redondeados */
     text-align: center;
 }
 
-/* Clase base para botones */
-.boton {
-    @include boton(black, white);
+.boton:hover, #accion a:hover, .boton-redondo:hover {
+    background-color: #ff8c00;
+    transform: translateY(-2px);
 }
 
-/* Clase específica para botones redondos */
-.boton-redondo {
-    @extend .boton;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 50%;
-    font-size: 20px;
-    padding: 20px;
-    display: none;
-    transition: opacity 0.5s ease, transform 0.3s ease; /* Transición de opacidad y escala */
-}
-
-/* Mostrar el botón cuando se haga scroll */
-#scrollTopBtn.show {
-    display: block;
-    opacity: 1; /* Aparece cuando la clase 'show' está activa */
-    transform: scale(1.1); /* Agranda el botón al aparecer */
-}
-
-/* Transformación en el logo */
-#logo {
-    @include centrar;
-    width: 50%;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Animación de barrido en el logo */
-@keyframes barrido-logo {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    50% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-#logo {
-    animation: barrido-logo 3s forwards;
-}
-
-/* Estilos adicionales */
-h1, h2, h3, h4, footer {
-    @extend .centrado;
-}
-
-#info {
-    @include lista-sin-estilo;
-    max-width: 600px;
-}
-
-#info li {
-    margin-bottom: 10px;
-}
-
-#accion a {
-    @extend .boton;
+/* Estilo de la tabla en el formulario */
+.table {
     margin-top: 20px;
 }
 
-/* Transición en el color de fondo de los botones */
-.boton:hover {
-    background-color: #28a745; /* Cambio a verde */
-    transform: scale(1.05); /* Escala ligeramente el botón */
+/* Pie de página */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    font-size: 0.9rem;
 }
 
-/* Eliminar animación en el banner */
+footer a {
+    color: #ff8c00;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo del botón de scroll hacia arriba */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: none; /* Inicialmente oculto */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+    background-color: #ff8c00;
+    transform: translateY(-2px);
+}
+
+#scrollTopBtn.show {
+    display: block; /* Mostrar cuando se haga scroll */
+}
+
+/* Estilo para el banner */
 #banner {
-    @include centrar;
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    width: 100%;
     height: auto;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
 }
 
-/* Estilo en el logo y banner para efecto hover */
-#logo:hover, #banner:hover {
-    transform: scale(1.1); /* Escala el logo o banner al 110% */
+/* Estilo para las listas de características */
+#info {
+    font-size: 1rem;
+    color: #555;
 }
 
-/* Nueva clase para el banner sin animaciones */
-.fixed-banner {
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    height: auto;
-    /* No se aplica animación */
-    transition: none;
+#info .list-group-item {
+    padding: 15px;
+    border: none;
+}
+
+#info .list-group-item:hover {
+    background-color: #f8f9fa;
 }
