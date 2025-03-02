@@ -132,4 +132,29 @@ footer a:hover {
 
 #info .list-group-item:hover {
   background-color: #f8f9fa;
+}
+
+/* Animación para el logo en la página de inicio */
+@keyframes barridoLogo {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Aplicar animación al logo */
+#logo {
+  animation: barridoLogo 1.5s ease-out forwards;
+}
+
+/* Estilo en el logo y banner para efecto hover */
+#logo:hover, #banner:hover {
+  transform: scale(1.1); /* Escala el logo o banner al 110% */
 }/*# sourceMappingURL=styles.css.map */
