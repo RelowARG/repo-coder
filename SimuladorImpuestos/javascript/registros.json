@@ -1,0 +1,23 @@
+[
+    {
+      "fecha": "2025-04-01",
+      "cliente": "Cliente Ejemplo",
+      "factura": "A001-000001",
+      "estado": "Pagado",
+      "pago": "Transferencia",
+      "neto": 10000,
+      "iva": 21,
+      "costoMercaderia": 6000
+    },
+    {
+      "fecha": "2025-04-10",
+      "cliente": "Empresa Ficticia S.A.",
+      "factura": "A001-000002",
+      "estado": "Pendiente",
+      "pago": "Tarjeta",
+      "neto": 5000,
+      "iva": 10.5,
+      "costoMercaderia": 3000
+    }
+  ]
+  
