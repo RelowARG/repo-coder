@@ -1,9 +1,9 @@
-// simulador.js
-
 // Selección de elementos del DOM
 const form = document.getElementById("formulario");
-const tabla = document.getElementById("tabla-body");
-const mensaje = document.getElementById("mensaje");
+const tabla = document.getElementById("tablaResultados").querySelector("tbody");
+const calcularBtn = document.getElementById("calcularBtn");
+const limpiarBtn = document.getElementById("limpiarBtn");
+
 let registros = JSON.parse(localStorage.getItem("registros")) || [];
 
 // Función para calcular impuestos
@@ -16,64 +16,87 @@ function calcularImpuestos(neto, iva) {
     return { ivaCalculado, iibb, impTransf, impGanancias, totalImpuestos };
 }
 
+// Función para mostrar mensaje con SweetAlert2
+function mostrarMensaje(texto, tipo) {
+    let icon;
+    switch (tipo) {
+        case "success": icon = "success"; break;
+        case "error": icon = "error"; break;
+        case "warning": icon = "warning"; break;
+        default: icon = "info";
+    }
+
+    Swal.fire({
+        icon: icon,
+        title: texto,
+        timer: 2000,
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false
+    });
+}
+
 // Función para actualizar la tabla
 function actualizarTabla() {
     tabla.innerHTML = "";
     registros.forEach((registro, index) => {
+        const ganancia = registro.total - registro.totalImpuestos - (registro.costoMercaderia || 0);
+
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td>${registro.fecha}</td>
-            <td>${registro.cliente}</td>
             <td>${registro.factura}</td>
-            <td>$${registro.neto}</td>
-            <td>${registro.iva}%</td>
-            <td>$${registro.ivaCalculado.toFixed(2)}</td>
+            <td>${registro.cliente}</td>
+            <td>${registro.estado}</td>
+            <td>${registro.pago}</td>
+            <td>$${registro.neto.toFixed(2)}</td>
+            <td>${registro.iva}%<br>($${registro.ivaCalculado.toFixed(2)})</td>
             <td>$${registro.total.toFixed(2)}</td>
             <td>$${registro.iibb.toFixed(2)}</td>
             <td>$${registro.impTransf.toFixed(2)}</td>
             <td>$${registro.impGanancias.toFixed(2)}</td>
             <td>$${registro.totalImpuestos.toFixed(2)}</td>
-            <td>
-                <button class='btn-eliminar' data-index='${index}'>❌</button>
-            </td>
+            <td>$${(registro.costoMercaderia || 0).toFixed(2)}</td>
+            <td>$${ganancia.toFixed(2)}</td>
+            <td><button class='btn-eliminar' data-index='${index}'>❌</button></td>
         `;
         tabla.appendChild(fila);
     });
     localStorage.setItem("registros", JSON.stringify(registros));
 }
 
-// Función para mostrar mensaje en pantalla
-function mostrarMensaje(texto, tipo) {
-    mensaje.textContent = texto;
-    mensaje.className = tipo;
-    setTimeout(() => mensaje.textContent = "", 3000);
-}
+// Evento botón calcular
+calcularBtn.addEventListener("click", () => {
+    const fecha = document.getElementById("fecha").value;
+    const factura = document.getElementById("nroFactura").value;
+    const cliente = document.getElementById("cliente").value;
+    const estado = document.getElementById("estado").value;
+    const pago = document.getElementById("pago").value;
+    const neto = parseFloat(document.getElementById("neto").value);
+    const iva = parseFloat(document.getElementById("iva").value);
+    const costoMercaderia = parseFloat(document.getElementById("costoMercaderia").value);
 
-// Evento para manejar el envío del formulario
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    const fecha = form.fecha.value;
-    const cliente = form.cliente.value;
-    const factura = form.factura.value;
-    const neto = parseFloat(form.neto.value);
-    const iva = parseFloat(form.iva.value);
-    
-    if (!fecha || !cliente || !factura || isNaN(neto) || isNaN(iva)) {
-        mostrarMensaje("Todos los campos son obligatorios", "error");
+    if (!fecha || !factura || !cliente || isNaN(neto) || isNaN(iva)) {
+        mostrarMensaje("Todos los campos obligatorios deben estar completos", "error");
         return;
     }
-    
+
     const impuestos = calcularImpuestos(neto, iva);
     const total = neto + impuestos.totalImpuestos;
-    
-    registros.push({ fecha, cliente, factura, neto, iva, ...impuestos, total });
+
+    registros.push({
+        fecha, factura, cliente, estado, pago, neto, iva,
+        costoMercaderia: isNaN(costoMercaderia) ? 0 : costoMercaderia,
+        ...impuestos,
+        total
+    });
+
     actualizarTabla();
-    form.reset();
     mostrarMensaje("Registro agregado correctamente", "success");
+    document.getElementById("formulario").reset();
 });
 
-// Evento para eliminar un registro
+// Evento eliminar registro
 tabla.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-eliminar")) {
         const index = e.target.dataset.index;
@@ -83,5 +106,28 @@ tabla.addEventListener("click", (e) => {
     }
 });
 
-// Cargar registros al iniciar
-actualizarTabla();
+// Botón limpiar formulario
+limpiarBtn.addEventListener("click", () => {
+    document.getElementById("formulario").reset();
+});
+
+// Precargar datos desde JSON si no hay registros en localStorage
+if (!localStorage.getItem("registros")) {
+    fetch("./javascript/registros.json")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(registro => {
+                const impuestos = calcularImpuestos(registro.neto, registro.iva);
+                const total = registro.neto + impuestos.totalImpuestos;
+                registros.push({
+                    ...registro,
+                    ...impuestos,
+                    total
+                });
+            });
+            actualizarTabla();
+        })
+        .catch(error => console.error("Error cargando datos iniciales:", error));
+} else {
+    actualizarTabla();
+}
