@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Impuestos</title>
-    <link rel="stylesheet" href="./styles/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulador de Impuestos</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Simulador de Impuestos</h1>
-        
-        <!-- Formulario de entrada de datos -->
-        <div id="formulario">
-            <label for="fecha">Fecha</label>
-            <input type="date" id="fecha">
-            
-            <label for="nroFactura">Número de Factura</label>
-            <input type="text" id="nroFactura">
-            
-            <label for="cliente">Cliente</label>
-            <input type="text" id="cliente">
-            
-            <label for="estado">Estado</label>
-            <select id="estado">
-                <option value="Pendiente">Pendiente</option>
-                <option value="Pagado">Pagado</option>
-                <option value="Cancelado">Cancelado</option>
-            </select>
-            
-            <label for="pago">Forma de Pago</label>
-            <select id="pago">
-                <option value="Efectivo">Efectivo</option>
-                <option value="Tarjeta">Tarjeta</option>
-                <option value="Transferencia">Transferencia</option>
-            </select>
-            
-            <label for="neto">Valor Neto</label>
-            <input type="number" id="neto" step="0.01" placeholder="Ingrese valor sin IVA">
-            
-            <label for="iva">IVA (%)</label>
-            <select id="iva">
-                <option value="21">21%</option>
-                <option value="10.5">10.5%</option>
-                <option value="27">27%</option>
-            </select>
-            
-            <label for="costoMercaderia">Costo de Mercadería</label>
-            <input type="number" id="costoMercaderia" step="0.01" placeholder="Ingrese costo de mercadería">
-        </div>
-        
-        <!-- Botones -->
-        <button id="calcularBtn">Calcular</button>
-        <button id="limpiarBtn">Limpiar</button>
+  <div class="container">
+    <h1>Simulador de Impuestos</h1>
 
-        <!-- Tabla de resultados -->
-        <table id="tablaResultados">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Nro Factura</th>
-                    <th>Cliente</th>
-                    <th>Estado</th>
-                    <th>Pago</th>
-                    <th>Neto</th>
-                    <th>IVA</th>
-                    <th>Total</th>
-                    <th>IIBB</th>
-                    <th>Imp. Transferencias</th>
-                    <th>Imp. Ganancias</th>
-                    <th>Impuestos Totales</th>
-                    <th>Costo Mercadería</th>
-                    <th>Ganancia</th>
-                    <th>Editar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Los registros se llenarán dinámicamente -->
-            </tbody>
-        </table>
+    <!-- Formulario de entrada -->
+    <div id="formulario" class="bg-white">
+      <label for="fecha" class="form-label">Fecha</label>
+      <input type="date" id="fecha" />
+
+      <label for="nroFactura" class="form-label">Número de Factura</label>
+      <input type="text" id="nroFactura" />
+
+      <label for="cliente" class="form-label">Cliente</label>
+      <input type="text" id="cliente" />
+
+      <label for="estado" class="form-label">Estado</label>
+      <select id="estado">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Pagado">Pagado</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+
+      <label for="pago" class="form-label">Forma de Pago</label>
+      <select id="pago">
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tarjeta">Tarjeta</option>
+        <option value="Transferencia">Transferencia</option>
+      </select>
+
+      <label for="neto" class="form-label">Valor Neto</label>
+      <input type="number" id="neto" step="0.01" placeholder="Ingrese valor sin IVA" />
+
+      <label for="iva" class="form-label">IVA (%)</label>
+      <select id="iva">
+        <option value="21">21%</option>
+        <option value="10.5">10.5%</option>
+        <option value="27">27%</option>
+      </select>
+
+      <label for="costoMercaderia" class="form-label">Costo de Mercadería</label>
+      <input type="number" id="costoMercaderia" step="0.01" placeholder="Ingrese costo de mercadería" />
+
+      <!-- Botones -->
+      <div style="margin-top: 15px;">
+        <button id="calcularBtn" class="boton">Calcular</button>
+        <button id="limpiarBtn" class="boton">Limpiar</button>
+      </div>
     </div>
 
-    <script src="javascript/simulador.js"></script>
+    <!-- Tabla de resultados -->
+    <div class="bg-white" style="margin-top: 30px;">
+      <table id="tablaResultados" class="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Nro Factura</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+            <th>Pago</th>
+            <th>Neto</th>
+            <th>IVA</th>
+            <th>Total</th>
+            <th>IIBB</th>
+            <th>Imp. Transf.</th>
+            <th>Ganancias</th>
+            <th>Impuestos Totales</th>
+            <th>Costo Mercadería</th>
+            <th>Ganancia</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Registros se llenan por JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="javascript/simulador.js"></script>
 </body>
 </html>
