@@ -1,0 +1,22 @@
+/* src/components/ItemListContainer.css */
+.item-list-container {
+  padding: 40px; /* Espacio alrededor del contenido */
+  text-align: center; /* Centra el contenido */
+  min-height: 60vh; /* Ocupa al menos el 60% de la altura visible */
+  /* Agrega un color de fondo si quieres diferenciarlo */
+  /* background-color: #f9f9f9; */
+}
+
+.item-list-container h2 {
+  font-size: 2.5em; /* Tamaño del título */
+  font-weight: 700; /* Grosor de la fuente */
+  margin-bottom: 30px; /* Espacio debajo del título */
+  color: #333; /* Color de texto oscuro */
+  /* La fuente de Nike es específica, podrías buscar una similar en Google Fonts */
+  /* font-family: 'Oswald', sans-serif; */ /* Ejemplo de fuente similar */
+}
+
+.item-list-container p {
+  font-size: 1.1em;
+  color: #555;
+}

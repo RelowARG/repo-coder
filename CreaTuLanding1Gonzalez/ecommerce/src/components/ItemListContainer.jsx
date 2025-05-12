@@ -1,6 +1,5 @@
 import React from 'react';
-// Opcional: crea este archivo CSS en src/components/
-// import './ItemListContainer.css';
+import './ItemListContainer.css';
 
 // Este componente recibe 'greeting' como una prop
 const ItemListContainer = ({ greeting }) => {
