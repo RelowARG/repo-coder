@@ -9,9 +9,12 @@ const ItemList = ({ products }) => {
   }
 
   return (
-    <Grid container spacing={4}>
+    // Se añade justifyContent="center" para centrar las tarjetas en la página.
+    <Grid container spacing={4} justifyContent="center">
       {products.map(product => (
-        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+        // Se quitan los props responsivos (xs, sm, etc.) para que el tamaño del item
+        // se base en el tamaño fijo de la tarjeta que contiene.
+        <Grid item key={product.id}>
           <Item {...product} />
         </Grid>
       ))}
