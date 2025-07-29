@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabelTech - {{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css"> {{!-- Ruta relativa a 'public' --}}
+</head>
+<body>
+    <div class="container text-center my-4">
+        <img id="logo" src="/img/logo_label.png" alt="Logo de LabelTech" class="img-fluid"> {{!-- Ruta relativa a 'public' --}}
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">LabelTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/realtimeproducts">Productos en Vivo</a></li>
+                    {{!-- Agrega aquí otros enlaces de navegación si los necesitas --}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 text-center">
+        {{{body}}} {{!-- Aquí se inyecta el contenido específico de cada vista --}}
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">
+            <a href="https://wa.me/541141933835" target="_blank" class="text-decoration-none text-white">WhatsApp</a> |
+            <a href="https://www.google.com.ar/maps/place/Comuna+11,+Gral.+Rivas+2345,+C1417+Cdad.+Aut%C3%B3noma+de+Buenos+Aires" target="_blank" class="text-decoration-none text-white">Gral Rivas 2345 4a</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script> {{!-- Importante: cliente de Socket.IO --}}
+</body>
+</html>
