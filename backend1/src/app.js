@@ -1,83 +1,141 @@
 import express from 'express';
-import { createServer } from 'http'; // Necesario para integrar socket.io con Express
-import { Server as SocketIOServer } from 'socket.io'; // Importar Server de socket.io
-import handlebars from 'express-handlebars'; // Importar express-handlebars
-import path from 'path'; // Necesario para trabajar con rutas de archivos
-import { fileURLToPath } from 'url'; // Necesario para __dirname en módulos ES
-
+import { createServer } from 'http';
+import { Server as SocketIOServer } from 'socket.io';
+import handlebars from 'express-handlebars';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import mongoose from 'mongoose'; // Importar Mongoose
+import { productModel } from './models/product.model.js'; // Importar el modelo de productos
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
-import { ProductManager } from './managers/ProductManager.js'; // Importar ProductManager
 
-// Helpers para simular __dirname en módulos ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Inicialización de la aplicación Express
 const app = express();
 const PORT = 8080;
 
-// Crear un servidor HTTP a partir de la aplicación Express
+// Conexión a MongoDB
+mongoose.connect('mongodb://localhost:27017/ecommerce', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Conexión a MongoDB exitosa!');
+}).catch(err => {
+    console.error('Error de conexión a MongoDB:', err);
+});
+
 const httpServer = createServer(app);
-// Crear una instancia de Socket.IO, adjuntándola al servidor HTTP
 const io = new SocketIOServer(httpServer);
 
-const productManager = new ProductManager(); // Instancia de ProductManager
-
-// Middlewares para parsear el body de las peticiones
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../public'))); // Servir archivos estáticos desde 'public'
+app.use(express.static(path.join(__dirname, '../public')));
 
-// Configuración de Handlebars
 app.engine('handlebars', handlebars.engine());
-app.set('views', path.join(__dirname, './views')); // Establecer el directorio de vistas
-app.set('view engine', 'handlebars'); // Usar Handlebars como motor de plantillas
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'handlebars');
 
-// Rutas principales de la API
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
 // Rutas para las vistas Handlebars
-app.get('/', async (req, res) => {
-    const products = await productManager.getProducts();
-    res.render('home', { products });
+app.get('/products', async (req, res) => {
+    try {
+        const { limit = 10, page = 1, sort, query } = req.query;
+
+        // Configurar los filtros de búsqueda
+        const filter = {};
+        if (query) {
+            filter.$or = [
+                { category: { $regex: query, $options: 'i' } },
+                { status: query.toLowerCase() === 'true' }
+            ];
+        }
+
+        // Configurar las opciones de ordenamiento
+        const sortOptions = {};
+        if (sort === 'asc') {
+            sortOptions.price = 1;
+        } else if (sort === 'desc') {
+            sortOptions.price = -1;
+        }
+
+        const options = {
+            page: parseInt(page),
+            limit: parseInt(limit),
+            sort: sortOptions,
+            lean: true // Para obtener objetos JavaScript planos
+        };
+
+        const products = await productModel.paginate(filter, options);
+        
+        // Construir los links para las paginación de la vista
+        const buildLink = (pageNumber) => {
+            const url = new URL(`${req.protocol}://${req.get('host')}${req.baseUrl}${req.path}`);
+            url.searchParams.set('page', pageNumber);
+            if (limit) url.searchParams.set('limit', limit);
+            if (sort) url.searchParams.set('sort', sort);
+            if (query) url.searchParams.set('query', query);
+            return url.toString();
+        };
+
+        res.render('index', {
+            status: 'success',
+            products: products.docs,
+            totalPages: products.totalPages,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+            page: products.page,
+            hasPrevPage: products.hasPrevPage,
+            hasNextPage: products.hasNextPage,
+            prevLink: products.hasPrevPage ? buildLink(products.prevPage) : null,
+            nextLink: products.hasNextPage ? buildLink(products.nextPage) : null
+        });
+    } catch (error) {
+        console.error('Error al obtener productos:', error);
+        res.status(500).send('Error al cargar la vista de productos.');
+    }
 });
 
-app.get('/realtimeproducts', async (req, res) => {
-    const products = await productManager.getProducts();
-    res.render('realTimeProducts', { products });
+app.get('/carts/:cid', async (req, res) => {
+    try {
+        const { cid } = req.params;
+        const cart = await cartModel.findById(cid).populate('products.product').lean();
+        if (!cart) {
+            return res.status(404).send('Carrito no encontrado.');
+        }
+        res.render('cart', { cart: cart.products });
+    } catch (error) {
+        res.status(500).send('Error al cargar la vista del carrito.');
+    }
 });
 
 // Configuración de Socket.IO
 io.on('connection', async (socket) => {
     console.log('Nuevo cliente conectado');
 
-    // Emitir la lista actual de productos al cliente recién conectado
-    const products = await productManager.getProducts();
+    const products = await productModel.find().lean();
     socket.emit('updateProducts', products);
 
-    // Escuchar eventos de 'newProduct' desde el cliente
     socket.on('newProduct', async (productData) => {
         try {
-            await productManager.addProduct(productData);
-            const updatedProducts = await productManager.getProducts();
-            io.emit('updateProducts', updatedProducts); // Emitir la lista actualizada a todos los clientes
+            await productModel.create(productData);
+            const updatedProducts = await productModel.find().lean();
+            io.emit('updateProducts', updatedProducts);
         } catch (error) {
             console.error('Error al agregar producto:', error.message);
-            socket.emit('productError', error.message); // Enviar error al cliente que intentó agregar
+            socket.emit('productError', error.message);
         }
     });
 
-    // Escuchar eventos de 'deleteProduct' desde el cliente
     socket.on('deleteProduct', async (productId) => {
         try {
-            await productManager.deleteProduct(productId);
-            const updatedProducts = await productManager.getProducts();
-            io.emit('updateProducts', updatedProducts); // Emitir la lista actualizada a todos los clientes
+            await productModel.findByIdAndDelete(productId);
+            const updatedProducts = await productModel.find().lean();
+            io.emit('updateProducts', updatedProducts);
         } catch (error) {
             console.error('Error al eliminar producto:', error.message);
-            socket.emit('productError', error.message); // Enviar error al cliente que intentó eliminar
+            socket.emit('productError', error.message);
         }
     });
 
@@ -86,11 +144,10 @@ io.on('connection', async (socket) => {
     });
 });
 
-// Iniciar el servidor HTTP (ahora con Socket.IO integrado)
 httpServer.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
-    console.log(`Vista Home: http://localhost:${PORT}/`);
-    console.log(`Vista Real-time Products: http://localhost:${PORT}/realtimeproducts`);
+    console.log(`Vista de Productos: http://localhost:${PORT}/products`);
+    console.log(`Vista de Productos en Tiempo Real: http://localhost:${PORT}/realtimeproducts`);
     console.log(`Rutas de productos API: http://localhost:${PORT}/api/products`);
     console.log(`Rutas de carritos API: http://localhost:${PORT}/api/carts`);
 });

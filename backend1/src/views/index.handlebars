@@ -1,0 +1,43 @@
+<h1 class="fw-bold">Nuestros Productos</h1>
+
+<div class="my-4">
+    <img id="banner" src="/img/banner.jpg" alt="Banner promocional de LabelTech" class="img-fluid">
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each products}}
+    <div class="col">
+        <div class="card h-100">
+            <a href="/products/{{this._id}}">
+                <img src="{{this.thumbnails.[0]}}" onerror="this.onerror=null;this.src='/img/item.png';"
+                    class="card-img-top" alt="{{this.title}}">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{this.description}}</p>
+                <p class="card-text"><strong>Precio: ${{this.price}}</strong></p>
+                <p class="card-text"><small class="text-muted">Stock: {{this.stock}}</small></p>
+                <form action="/api/carts/{{cid}}/products/{{this._id}}" method="post">
+                    <button type="submit" class="btn btn-primary btn-sm">Agregar al carrito</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+        {{#if hasPrevPage}}
+        <li class="page-item"><a class="page-link" href="{{prevLink}}">Anterior</a></li>
+        {{/if}}
+        <li class="page-item active"><span class="page-link">{{page}}</span></li>
+        {{#if hasNextPage}}
+        <li class="page-item"><a class="page-link" href="{{nextLink}}">Siguiente</a></li>
+        {{/if}}
+    </ul>
+</nav>
+
+<div id="accion" class="my-4">
+    <a href="https://wa.me/541141933835" target="_blank" class="btn btn-success btn-lg">¡Contactate con un vendedor!</a>
+</div>
