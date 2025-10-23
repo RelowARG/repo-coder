@@ -1,12 +1,19 @@
 import passport from 'passport';
 import local from 'passport-local';
 import jwt from 'passport-jwt';
-import { UserModel } from '../models/user.model.js';
-import { PRIVATE_KEY } from '../utils/jwt.js';
+import config from './config.js';
+
+// Importamos la nueva arquitectura
+import UserManager from '../dao/mongo/managers/UserManager.js';
+import UserRepository from '../repository/UserRepository.js';
 
 const LocalStrategy = local.Strategy;
 const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
+
+// Instanciamos las clases
+const userManager = new UserManager();
+const userRepository = new UserRepository(userManager);
 
 const cookieExtractor = (req) => {
     let token = null;
@@ -22,12 +29,14 @@ const initializePassport = () => {
         async (req, username, password, done) => {
             const { first_name, last_name, email, age } = req.body;
             try {
-                const user = await UserModel.findOne({ email: username });
+                // Usamos el repositorio en lugar del modelo directamente
+                const user = await userRepository.findOne({ email: username });
                 if (user) {
                     return done(null, false, { message: 'El usuario ya existe' });
                 }
                 const newUserInfo = { first_name, last_name, email, age, password };
-                const newUser = await UserModel.create(newUserInfo);
+                // Usamos el repositorio para crear el usuario
+                const newUser = await userRepository.create(newUserInfo);
                 return done(null, newUser);
             } catch (error) {
                 return done('Error al registrar el usuario: ' + error);
@@ -39,7 +48,8 @@ const initializePassport = () => {
         { usernameField: 'email' },
         async (username, password, done) => {
             try {
-                const user = await UserModel.findOne({ email: username });
+                // Usamos el repositorio
+                const user = await userRepository.findOne({ email: username });
                 if (!user || !user.isValidPassword(password)) {
                     return done(null, false, { message: 'Credenciales inválidas' });
                 }
@@ -53,7 +63,7 @@ const initializePassport = () => {
     passport.use('current', new JWTStrategy(
         {
             jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
-            secretOrKey: PRIVATE_KEY,
+            secretOrKey: config.jwtPrivateKey,
         },
         async (jwt_payload, done) => {
             try {

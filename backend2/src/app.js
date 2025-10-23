@@ -2,12 +2,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
-
+import usersRouter from './routes/users.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import initializePassport from './config/passport.config.js';
+import config from './config/config.js'; // 1. Importamos la configuración
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+// 2. Usamos el puerto desde la configuración
+const PORT = config.port;
 
 // Middlewares
 app.use(express.json());
@@ -19,13 +21,14 @@ initializePassport();
 app.use(passport.initialize());
 
 // Conexión a la Base de Datos
-const MONGO_URL = 'mongodb+srv://<user>:<password>@clusterurl/.../<databaseName>';
-mongoose.connect(MONGO_URL)
+// 3. Usamos la URL de Mongo desde la configuración
+mongoose.connect(config.mongoUrl)
     .then(() => console.log('Conectado a la base de datos'))
     .catch(error => console.error('Error al conectar a la base de datos:', error));
 
 // Rutas
 app.use('/api/sessions', sessionsRouter);
+app.use('/api/users', usersRouter); // 2. Usa el nuevo router
 
 // Iniciar servidor
 app.listen(PORT, () => {
